@@ -1,0 +1,142 @@
+.btn {
+    font-family: 'Lilita One';
+    margin: 7px;
+    text-align: center;
+    background: lightgray;
+    padding: .6em .8em .8em;
+    border: none;
+    color: white;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: inset 0 -.2em rgba(0, 0, 0, .2);
+    outline: 0;
+    transition: .2s;
+    will-change: transform;
+}
+
+.btn1 {
+    font-family: 'Lilita One';
+    margin: 5px 0;
+    /* height: 10%;
+    width: 45%; */
+    width: 20%;
+    padding: 5px;
+    text-decoration: none;
+    box-shadow: rgba(255, 255, 255, 0.01) 0px 1px 0px inset, rgba(0, 0, 0, 0.05) 0px 1px 1px;
+    border-top-width: 0.0625rem;
+    transition: color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;
+    border-width: 1px;
+    color: rgb(255, 255, 255);
+    border-radius: 0.25rem;
+    background: #2ed573;
+    box-shadow: 0 0 0 1px #000;
+    border-bottom: 3px solid #209e55;
+    border-top: 3px solid #37f987;
+    border-radius: 3px;
+    text-shadow: 1px 1px #000, -1px 1px #000, 1px -1px #000, -1px -1px #000, 1px 1px 5px #555;
+}
+
+.btn2 {
+    font-family: 'Lilita One';
+    margin-top: 10%;
+    height: 10%;
+    width: 45%;
+    font-size: 20px;
+    text-decoration: none;
+    box-shadow: rgba(255, 255, 255, 0.01) 0px 1px 0px inset, rgba(0, 0, 0, 0.05) 0px 1px 1px;
+    border-top-width: 0.0625rem;
+    transition: color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;
+    border-width: 1px;
+    color: rgb(255, 255, 255);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    background: #2ed573;
+    box-shadow: 0 0 0 1px #000;
+    border-bottom: 3px solid #209e55;
+    border-top: 3px solid #37f987;
+    border-radius: 3px;
+    text-shadow: 1px 1px #000, -1px 1px #000, 1px -1px #000, -1px -1px #000, 1px 1px 5px #555;
+}
+
+.btn3 {
+    font-family: 'Lilita One';
+    margin-top: 10%;
+    font-size: 24px;
+    border-top-width: 0.0625rem;
+    transition: color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;
+    border-width: 1px;
+    color: rgb(255, 255, 255);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    background: #4997ff;
+    box-shadow: 0 0 0 1px #000;
+    border-bottom: 4px solid #356bb3;
+    border-top: 4px solid #aacfff;
+    border-radius: 3px;
+    text-shadow: 1px 1px #000, -1px 1px #000, 1px -1px #000, -1px -1px #000, 1px 1px 5px #555;
+}
+
+.btn-def {
+    margin: 5px 0;
+    /* height: 10%;
+    width: 45%; */
+    width: 20%;
+    padding: 5px;
+    box-shadow: rgba(255, 255, 255, 0.01) 0px 1px 0px inset, rgba(0, 0, 0, 0.05) 0px 1px 1px;
+    border-top-width: 0.0625rem;
+    transition: color 0.1s ease-in-out 0s,
+        background-color 0.1s ease-in-out 0s;
+    border-width: 1px;
+    border-radius: 0.25rem;
+    background: var(--morado);
+    box-shadow: 0 0 0 1px #000;
+    border-bottom: 3px solid #5b62bf;
+    border-top: 3px solid #9aa1f9;
+    border-radius: 3px;
+}
+.btn-footer {
+    width: 100%;
+    display: flex;
+    /* flex-direction: row; */
+    /* background: #aab8c2; */
+    /* padding: 5px; */
+    /* justify-content: space-around; */
+    /* border-radius: .375rem; */
+    margin-top: 10px;
+}
+.btn-ready{
+    width: 95%;
+    margin: 0 auto;
+}
+
+
+.btn1:active {
+    transform: scale(.9);
+}
+
+.btn2:active,
+.btn3:active {
+    transform: scale(.9);
+}
+
+.btn-disabled {
+    background: #edf2f9 !important;
+    border-bottom: 3px solid #edf2f9 !important;
+    border-top: 3px solid #edf2f9 !important;
+}
+.btn-ready-disabled {
+    background: #60738c !important;
+    border-bottom: 3px solid #3d4958 !important;
+    border-top: 3px solid #bacbe0 !important;
+}
+
+.btn-disabled-def {
+    background: #383c77 !important;
+    border-bottom: 3px solid #383c77 !important;
+    border-top: 3px solid #383c77 !important;
+}

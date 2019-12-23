@@ -1,0 +1,190 @@
+@import url('buttons.css');
+@import url('spinner.css');
+@import url('card.css');
+@import url('snackbar.css');
+@import url('csshake-horizontal.css');
+@import url('colorsNumbers.css');
+
+@font-face {
+    font-family: 'Lilita One';
+    src: url('../font/LilitaOne-Regular.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --s-loader-wrapper-bg-color: rgb(21, 22, 43);
+    --s-loader-width: 20px;
+    --s-loader-height: var(--s-loader-width);
+    --s-loader-border-color-trans: rgba(255, 235, 59, 0.3);
+    --s-loader-border-color-full: #FFEB3B;
+    --rojo: #f12639;
+    --lime: #82c91e;
+    --azul: #1a73e8;
+    --verde-on: #00d27a;
+    --verde-energia: #2cc185;
+    --s-gris-fondo1: #f4f4f4;
+    --negro-fondo1: #323232;
+    --morado: #727cf5;
+    --fondo-gris-claro: #edf2f9;
+    --amarillo: #ffc107;
+    --fondo-gris2: #aab8c2;
+    --naranja: #ff9800;
+}
+
+@media screen and (min-width: 320px) and (max-width: 736px) {
+    body {
+        background: var(--fondo-gris-claro);
+    }
+
+    .red {
+        color: var(--rojo) !important;
+    }
+
+    .humano-inicia,
+    .cpu-inicia {
+        font-family: 'Lilita One';
+        font-size: -webkit-xxx-large;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: row;
+
+    }
+
+    .info-turno,
+    .info-ganador {
+        text-align: center;
+        /* margin: 0 auto; */
+        /* background:#aab8c2; */
+
+    }
+
+    .seleccion {
+        height: 100vh;
+        width: 100%;
+        background: rgba(49, 49, 49, 0.98);
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .contenedor {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: gray;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .contenedor-card {
+        display: flex;
+        width: 95%;
+        margin: 0 auto;
+        align-items: center;
+    }
+
+    .contenedor-card div:nth-child(1) {
+        width: 60%;
+    }
+
+    .contenedor-card div:nth-child(2) {
+        width: 30%;
+    }
+
+    .info-tiempo {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .datos {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background: gray;
+        text-align: center;
+    }
+
+    .datos>div {
+        width: 30%;
+    }
+
+    .barra-vida {
+        background: var(--rojo);
+    }
+
+    .potenciadores {
+        width: 100%;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .potenciadores>div {
+        width: 30%;
+    }
+
+    .contenedor-mensajes {
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 15px;
+        text-align: center;
+        padding: 10px;
+        border-radius: .165rem;
+        background: var(--fondo-gris2);
+        box-shadow: inset 0 0.25rem 0.125rem 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .mfdr{
+        display: flex;
+        flex-direction: row;
+    }
+    .mensajes {
+        /* font-family: 'Lilita One'; */
+        color: #fff;
+    }
+
+    .item {
+        cursor: pointer;
+        margin: 5px 5px;
+        padding: 3px;
+        background-color: white;
+        border-radius: 2px;
+        box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+        transition: margin 0.1s;
+    }
+
+    .c-uno{
+        display: flex;
+        flex-direction: row;
+    }
+    .pieza {
+        width: 20%;
+        max-height: 50px;
+        display: flex;
+        flex-direction: column;
+
+    }
+    .porcentaje{
+        font-family: 'Lilita One';
+        color: #fff;
+        font-size: -webkit-xxx-large;
+    }
+    .bg-gray{
+        background-color: #aab8c2;
+    }
+
+    
+}
