@@ -1,51 +1,32 @@
 var iRage;
 var dJugador;
 var ronda;
-var timer;
-var iSegundos = 7;
+var iSR;
+var nbAtk;
 
 //objetos
 var uno = {
-    shield: 3,
-    smash: 3,
+    shield: 5,
+    smash: 5,
     porcentaje: 0,
-    nB: 2,
-    tilt: 1,
-    rage: 0
+    nB: 3,
+    tilt: 2,
+    rage: 1
 }
 
 var dos = {
-    shield: 3,
-    smash: 4,
+    shield: 5,
+    smash: 5,
     porcentaje: 0,
-    nB: 2,
-    tilt: 1,
-    rage: 0
+    nB: 3,
+    tilt: 2,
+    rage: 1
 }
 
 $(document).ready(function () {
 
     var dJugador = $("#c-uno")[0];
-
-
-
-    uno.rage += rageRandom();
-    dos.rage += rageRandom();
-
-    $("#smash-value1").html(uno.smash);
-    $("#shield-value1").html(uno.shield);
-
-    $("#smash-value").html(dos.smash);
-    $("#shield-value").html(dos.shield);
-
-    $("#nb1-value").html(uno.nB);
-    $("#nb-value").html(dos.nB);
-
-    $("#tilt1-value").html(uno.tilt);
-    $("#tilt-value").html(dos.tilt);
-
-    $("#rage1").html("Rage: " + uno.rage);
-    $("#rage2").html("Rage: " + dos.rage);
+    randomizarValoresXTurno();
 
     $("#porcentaje1").html(uno.porcentaje + ' %');
     $("#porcentaje2").html(dos.porcentaje + ' %');
@@ -77,7 +58,14 @@ function pasarTurno() {
         cpuSeleccionAccion();
     }, 3000);
 }
-
+function nBRandom() {
+    nbAtk = Math.floor(Math.random() * (4 - 1)) + 1;
+    return nbAtk;
+}
+function sRandom() {
+    iSR = Math.floor(Math.random() * (6 - 1)) + 1;
+    return iSR;
+}
 function rageRandom() {
     iRage = Math.floor(Math.random() * (4 - 1)) + 1;
     return iRage;
@@ -115,32 +103,32 @@ function handler() {
     }
 }
 $("#btn-ready").click(function () {
+    randomizarValoresXTurno();
     $("#btn-ready").attr("disabled", true);
+    $("#btn-ready").addClass("btn-ready-disabled");
     let mDOS = $("#m-dos")[0];
     let cUno = $("#c-uno")[0];
 
+    setTimeout(function () {
     for (i = 0; i < mDOS.childNodes.length; i++) {
-
         let x = document.getElementById(mDOS.childNodes[i].id);
         $(x).attr('onClick', 'selectM(this);');
         cUno.append(x);
         i--;
     }
+}, 3000);
     stageOut();
 });
 
 function compararSmash() {
 
+
     compararValorUno();
     compararValorDos();
     compararValorTres();
     compararValorCuatro();
-    // compararValorCinco();
-    // let mov = $("#movimientos");
-    //tercero valor de ambos elementos
-    // console.log(mov[0].childNodes[1].childNodes[5].childNodes[3].innerText)
-    // console.log(mov[0].childNodes[3].childNodes[2].childNodes[3].innerText)
     icreaseRage();
+    evaluarPorcentaje();
     stageOut();
 }
 
@@ -269,11 +257,26 @@ function stageOut() {
         $("#smash").prop("onclick", null).off("click");
         $("#nb").prop("onclick", null).off("click");
         $("#tilt").prop("onclick", null).off("click");
-
     }
 
+    let y = $("#porcentaje1");
+    if(uno.porcentaje >= 5){ y.addClass("cero-7")}
+    if(uno.porcentaje >= 14){ y.addClass("cero-14")} 
+    if(uno.porcentaje >= 21){ y.addClass("cero-21")} 
+    if(uno.porcentaje >= 28){ y.addClass("cero-28")}
+    if(uno.porcentaje >= 35){ y.addClass("cero-35")}
+    if(uno.porcentaje >= 42){ y.addClass("cero-42")}
+    if(uno.porcentaje >= 49){ y.addClass("cero-49")}
+    if(uno.porcentaje >= 56){ y.addClass("cero-56")}
+    if(uno.porcentaje >= 63){ y.addClass("cero-63")}
+    if(uno.porcentaje >= 70){ y.addClass("cero-70")}
+    if(uno.porcentaje >= 77){ y.addClass("cero-77")}
+    if(uno.porcentaje >= 84){ y.addClass("cero-84")}
+    if(uno.porcentaje >= 91){ y.addClass("cero-91")}
+    if(uno.porcentaje >= 98){ y.addClass("cero-98")}
+
     let x = $("#porcentaje2");
-    if(dos.porcentaje >= 7){ x.addClass("cero-7")}
+    if(dos.porcentaje >= 5){ x.addClass("cero-7")}
     if(dos.porcentaje >= 14){ x.addClass("cero-14")} 
     if(dos.porcentaje >= 21){ x.addClass("cero-21")} 
     if(dos.porcentaje >= 28){ x.addClass("cero-28")}
@@ -287,23 +290,54 @@ function stageOut() {
     if(dos.porcentaje >= 84){ x.addClass("cero-84")}
     if(dos.porcentaje >= 91){ x.addClass("cero-91")}
     if(dos.porcentaje >= 98){ x.addClass("cero-98")}
-    
 }
-
 
 function icreaseRage() {
     if (uno.porcentaje > dos.porcentaje) {
-        dos.rage += 3;
-        uno.rage += 1;
-        $("#rage1").html("Rage: " + uno.rage);
+        dos.rage += 1;
+        // uno.rage += 1;
+        // $("#rage1").html("Rage: " + uno.rage);
         $("#rage2").html("Rage: " + dos.rage);
 
     } else if (dos.porcentaje > uno.porcentaje) {
-        uno.rage += 3;
-        dos.rage += 1;
+        uno.rage += 1;
+        // dos.rage += 1;
         $("#rage1").html("Rage: " + uno.rage);
-        $("#rage2").html("Rage: " + dos.rage);
+        // $("#rage2").html("Rage: " + dos.rage);
     }
+}
+function evaluarPorcentaje(){
+
+    uno.porcentaje += uno.rage;
+    dos.porcentaje += dos.rage;
+
+    $("#porcentaje1").html(uno.porcentaje + ' %');
+    $("#porcentaje2").html(dos.porcentaje + ' %');
+}
+function randomizarValoresXTurno(){
+    uno.shield += sRandom();
+    uno.smash += nBRandom();
+    uno.nB += sRandom();
+    uno.tilt += sRandom();
+    uno.rage += rageRandom();
+
+    dos.shield += sRandom();
+    dos.smash += nBRandom();
+    dos.nB += sRandom();
+    dos.tilt += sRandom();
+    dos.rage += rageRandom();
+
+    $("#shield-value1").html(uno.shield);
+    $("#smash-value1").html(uno.smash);
+    $("#nb1-value").html(uno.nB);
+    $("#tilt1-value").html(uno.tilt);
+    $("#rage1").html("Rage: " + uno.rage);
+
+    $("#shield-value").html(dos.shield);
+    $("#smash-value").html(dos.smash);
+    $("#nb-value").html(dos.nB);
+    $("#tilt-value").html(dos.tilt);
+    $("#rage2").html("Rage: " + dos.rage);
 }
 
 //355 LINEAS
