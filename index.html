@@ -38,10 +38,10 @@
                     <div>Nutral B</div>
                     <div id="nb1-value"></div>
                 </div>
-                <div id="tilt1" class="item pieza" onclick="selectM(this)">
+                <!-- <div id="tilt1" class="item pieza" onclick="selectM(this)">
                     <div>Tilt</div>
                     <div id="tilt1-value"></div>
-                </div>
+                </div> -->
             </div>
             <div id="m-dos" class="mfdr"></div>
         </div>
@@ -49,34 +49,62 @@
     <div class="card">
         <div class="card-body bg-gray">
             <div class="card-datos">
+                <div id="energia2">E: </div>
                 <div id="rage2">Rage: </div>
                 <div id="porcentaje2" class="porcentaje"></div>
             </div>
             <div id="c-uno" class="c-uno">
                 <div id="shield" class="item pieza" onclick="selectM(this)">
-                    <img src="images/shield.jpg" alt="shield" style="height: 70px;">
-                    <div id="shield-value"></div>
+                    <img src="images/shield.jpg" alt="shield" id="img-shield" style="height: 70px;">
+                    <div class="datos">
+                        <div id="shield-value">shield</div>
+                        <div id="shield-cost">5</div>
+                    </div>
                 </div>
                 <div id="smash" class="item pieza" onclick="selectM(this)">
-                    <img src="images/smahs.jpg" alt="shield" style="height: 70px;">
-                    <div id="smash-value"></div>
+                    <img src="images/smahs.jpg" alt="smash" id="img-smash" style="height: 70px;">
+                    <div class="datos">
+                        <div id="smash-value">smash</div>
+                        <div id="smash-cost">5</div>
+                    </div>
                 </div>
                 <div id="nb" class="item pieza" onclick="selectM(this)">
-                    <img src="images/nb.jpg" alt="shield" style="height: 70px;">
-                    <div id="nb-value"></div>
+                    <img src="images/nb.jpg" alt="nb" id="img-nb" style="height: 70px;">
+                    <div class="datos">
+                        <div id="nb-value">nb</div>
+                        <div id="nb-cost">2</div>
+                    </div>
                 </div>
                 <div id="tilt" class="item pieza" onclick="selectM(this)">
-                    <img src="images/tilt.jpg" alt="shield" style="height: 70px;">
-                    <div id="tilt-value"></div>
+                    <img src="images/tilt.jpg" alt="tilt" id="img-tilt" style="height: 70px;">
+                    <div class="datos">
+                        <div id="tilt-value">tilt</div>
+                        <div id="tilt-cost">3</div>
+                    </div>
+                </div>
+                <div id="upB" class="item pieza" onclick="selectM(this)">
+                    <img src="images/upb.jpg" alt="upb" id="img-upb" style="height: 70px;">
+                    <div class="datos">
+                        <div id="upb-value">upb</div>
+                        <div id="upb-cost">7</div>
+                    </div>
+                </div>
+                <div id="sideB" class="item pieza" onclick="selectM(this)">
+                    <img src="images/sideb.jpg" alt="sideB" id="img-sideB" style="height: 70px;">
+                    <div class="datos">
+                        <div id="sideB-value">sideB</div>
+                        <div id="sideB-cost">4</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-  <div class="btn-footer">
-    <button id="btn-ready" class="btn-ready btn3" onclick="compararSmash()" disabled>Listo</button>
-  </div>
+    <div class="btn-footer">
+        <button id="btn-ready" class="btn-ready btn3" onclick="compararSmash()" disabled>Listo</button>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/index.js"></script>
+
 </html>
