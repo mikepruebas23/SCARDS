@@ -14,7 +14,8 @@ var uno = {
     tilt: 2,
     rage: 1,
     upB: 4,
-    sideB: 3
+    sideB: 3,
+    jab: 0
 }
 
 var dos = {
@@ -26,7 +27,8 @@ var dos = {
     tilt: 2,
     rage: 1,
     upB: 4,
-    sideB: 3
+    sideB: 3,
+    jab: 0
 }
 
 $(document).ready(function () {
@@ -173,8 +175,13 @@ $("#btn-ready").click(function () {
             cUno.append(x);
             i = i - 3;
         }
+        dos.energia+= 2;
+        $("#energia2").html("E: " + dos.energia);
     }, 3000);
     stageOut();
+    
+    setTimeout(function(){disponibles()},3005);
+    
 });
 
 function compararSmash() {
@@ -189,6 +196,7 @@ function compararSmash() {
     // icreaseRage();
     evaluarPorcentaje();
     stageOut();
+
     // dos.energia+= 10;
     // $("#energia2").html("E: " + dos.energia);
 }
@@ -213,13 +221,18 @@ function compararValorUno() {
 
         uno.porcentaje += 2;
         dos.porcentaje += 2;
+        dos.energia += 2;
 
         $("#porcentaje1").html(uno.porcentaje + ' %');
         $("#porcentaje2").html(dos.porcentaje + ' %');
+        $("#energia2").html("E: " + dos.energia);
+
 
     } else {
         dos.porcentaje += iValorUnoCPU - iValorUnoJ;;
         $("#porcentaje2").html(dos.porcentaje + ' %');
+        dos.energia += 1;
+        $("#energia2").html("E: " + dos.energia);
     }
 }
 
@@ -242,14 +255,18 @@ function compararValorDos() {
 
         uno.porcentaje += 2;
         dos.porcentaje += 2;
+        dos.energia+= 2;
 
         $("#porcentaje1").html(uno.porcentaje + ' %');
         $("#porcentaje2").html(dos.porcentaje + ' %');
+        $("#energia2").html("E: " + dos.energia);
 
     } else {
 
         dos.porcentaje += iValorUnoCPU - iValorUnoJ;;
         $("#porcentaje2").html(dos.porcentaje + ' %');
+        dos.energia += 1;
+        $("#energia2").html("E: " + dos.energia);
     }
 }
 
@@ -272,14 +289,18 @@ function compararValorTres() {
 
         uno.porcentaje += 2;
         dos.porcentaje += 2;
+        dos.energia += 2;
 
         $("#porcentaje1").html(uno.porcentaje + ' %');
         $("#porcentaje2").html(dos.porcentaje + ' %');
+        $("#energia2").html("E: " + dos.energia);
 
     } else {
 
         dos.porcentaje += iValorUnoCPU - iValorUnoJ;;
         $("#porcentaje2").html(dos.porcentaje + ' %');
+        dos.energia += 1;
+        $("#energia2").html("E: " + dos.energia);
     }
 }
 
@@ -504,6 +525,7 @@ function showDosValues() {
     // $("#energia2").html("E: " + dos.energia);
     $("#upb-value").html(dos.upB);
     $("#sideB-value").html(dos.sideB);
+    $("#jab-value").html(dos.jab);
 }
 
 function medirEnergia(accion,costo){
@@ -516,6 +538,7 @@ function medirEnergia(accion,costo){
             disponibles();
             if(dos.energia == 0){
                 bloquearCRestantes("si");
+                console.log("detecto energia igual a cero");
 
             }else if(dos.energia == 0){
                 bloquearCRestantes("no");
@@ -533,6 +556,7 @@ function medirEnergia(accion,costo){
             // }
         break;
     }
+    console.log("e actual: ", dos.energia);
 }
 function disponibles(){
 
