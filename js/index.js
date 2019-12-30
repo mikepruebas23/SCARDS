@@ -103,20 +103,20 @@ function selectM(e) {
 
     //funcionaba antes de mover la energia para arriba en otro div
     // let x = e.children[1].children[1].innerText;
-    let x = e.children[0].children[0].innerText;
+    let x = e.children[0].children[1].innerText;
+    // console.log(x);
 
-    if(x <= dos.energia){
-        
-    }
-    else{
+    if (x <= dos.energia) {
+
+    } else {
         return;
     }
-  
+
     let nDiv = document.getElementById(e.id);
     $(nDiv).attr('onClick', 'dselectM(this);');
     $("#m-dos").append(e);
     x = parseInt(x, 10);
-    medirEnergia("restar",x);   
+    medirEnergia("restar", x);
 }
 
 function dselectM(e) {
@@ -127,18 +127,18 @@ function dselectM(e) {
     // let x = e.children[1].children[1].innerText;
     let x = e.children[0].children[0].innerText;
     x = parseInt(x, 10);
-    medirEnergia("sumar",x);
+    medirEnergia("sumar", x);
 }
 
 var allmove = document.getElementById("m-dos");
 // allmove.addEventListener("DOMNodeInserted", handler, true);
 $("body").on('DOMSubtreeModified', "#m-dos", handler);
-$('#m-dos').bind('DOMNodeRemoved', function() {
+$('#m-dos').bind('DOMNodeRemoved', function () {
 
     let x = $("#m-dos")[0];
     // console.log("dom lenght: ",x.children.length);
-    if(x.children.length <= 3){
-        bloquearCRestantes("no"); 
+    if (x.children.length <= 3) {
+        bloquearCRestantes("no");
     }
 });
 
@@ -151,7 +151,7 @@ function handler() {
         $("#btn-ready").attr("disabled", false);
         $("#btn-ready").removeClass("btn-ready-disabled");
 
-    } else if(allmove.childNodes.length > 3){
+    } else if (allmove.childNodes.length > 3) {
         console.log("mayor a 3");
     } else {
 
@@ -167,14 +167,14 @@ $("#btn-ready").click(function () {
     let mDOS = $("#m-dos")[0];
     let cUno = $("#c-uno")[0];
 
-    for (i = 0; i < mDOS.childNodes.length;i++) {
+    for (i = 0; i < mDOS.childNodes.length; i++) {
         let x = document.getElementById(mDOS.childNodes[i].id);
         $(x).prop("onclick", null).off("click");
         // i = i - 3;
     }
 
     setTimeout(function () {
-        for (i = 0; i < mDOS.childNodes.length;i = 0) {
+        for (i = 0; i < mDOS.childNodes.length; i = 0) {
             let x = document.getElementById(mDOS.childNodes[i].id);
             // console.log(x);
             $(x).attr('onClick', 'selectM(this);');
@@ -182,13 +182,15 @@ $("#btn-ready").click(function () {
             cUno.append(x);
             i = i - 3;
         }
-        dos.energia+= 2;
+        dos.energia += 2;
         $("#energia2").html(dos.energia);
     }, 3000);
     stageOut();
-    
-    setTimeout(function(){disponibles()},3005);
-    
+
+    setTimeout(function () {
+        disponibles()
+    }, 3005);
+
 });
 
 function compararSmash() {
@@ -204,24 +206,24 @@ function compararSmash() {
     evaluarPorcentaje();
     stageOut();
 
-    dos.energia+= 10;
+    dos.energia += 10;
     $("#energia2").html(dos.energia);
 }
 
 function compararValorUno() {
 
     let mov = $("#movimientos")[0];
-    
+
     let iValorUnoCPU = mov.childNodes[1].childNodes[1].childNodes[3].innerText;
     let iValorUnoJ = mov.childNodes[3].childNodes[0].childNodes[1].innerText;
     let sValorUnoJ = mov.childNodes[3].childNodes[0].childNodes[5].childNodes[1].id;
-   
+
     // console.log(mov.childNodes[3].childNodes[0].childNodes[3].innerText);
 
     iValorUnoJ = parseInt(iValorUnoJ, 10);
     iValorUnoCPU = parseInt(iValorUnoCPU, 10);
 
-    if(sValorUnoJ == 'counter-value'){
+    if (sValorUnoJ == 'counter-value') {
         iValorUnoJ = iValorUnoCPU * 3;
     }
 
@@ -260,7 +262,7 @@ function compararValorDos() {
     iValorUnoJ = parseInt(iValorUnoJ, 10);
     iValorUnoCPU = parseInt(iValorUnoCPU, 10);
 
-    if(sValorUnoJ == 'counter-value'){
+    if (sValorUnoJ == 'counter-value') {
         iValorUnoJ = iValorUnoCPU * 3;
     }
 
@@ -273,7 +275,7 @@ function compararValorDos() {
 
         uno.porcentaje += 2;
         dos.porcentaje += 2;
-        dos.energia+= 2;
+        dos.energia += 2;
 
         $("#porcentaje1").html(uno.porcentaje + ' %');
         $("#porcentaje2").html(dos.porcentaje + ' %');
@@ -299,7 +301,7 @@ function compararValorTres() {
     iValorUnoJ = parseInt(iValorUnoJ, 10);
     iValorUnoCPU = parseInt(iValorUnoCPU, 10);
 
-    if(sValorUnoJ == 'counter-value'){
+    if (sValorUnoJ == 'counter-value') {
         iValorUnoJ = iValorUnoCPU * 3;
     }
 
@@ -509,19 +511,19 @@ function bloquearCRestantes(bloquear) {
     for (i = 0; i < CUNO.children.length; i++) {
         let x = CUNO.children[i].id;
         let y = document.getElementById(x);
-       
+
         for (j = 0; j < CUNO.children[i].children.length; j++) {
 
             let z = CUNO.children[i].children[j].id;
             if (z.includes('img-')) {
 
-                switch(bloquear){
+                switch (bloquear) {
                     case "si":
                         $(y).prop("onclick", null).off("click").addClass('oscurecer');
-                    break;
+                        break;
                     case "no":
                         $(y).attr('onClick', 'selectM(this);').removeClass('oscurecer');
-                    break;
+                        break;
                 }
             }
         }
@@ -553,25 +555,25 @@ function showDosValues() {
     $("#counter-value").html(dos.counter);
 }
 
-function medirEnergia(accion,costo){
+function medirEnergia(accion, costo) {
 
-    switch(accion){
+    switch (accion) {
         case "restar":
             dos.energia -= costo;
             $("#energia2").html(dos.energia);
             disponibles();
-            if(dos.energia == 0){
+            if (dos.energia == 0) {
                 bloquearCRestantes("si");
                 //desbloquear los que si se pueden
                 let MDOS = $("#m-dos")[0];
-                if( MDOS.children.length <= 2){
+                if (MDOS.children.length <= 2) {
                     desbloquearDisponibles();
                 }
 
-            }else if(dos.energia == 0){
+            } else if (dos.energia == 0) {
                 bloquearCRestantes("no");
             }
-        break;
+            break;
         case "sumar":
             dos.energia += costo;
             $("#energia2").html(dos.energia);
@@ -582,36 +584,38 @@ function medirEnergia(accion,costo){
             // }else if(dos.energia == 0){
             //     bloquearCRestantes("no");
             // }
-        break;
+            break;
     }
 }
-function disponibles(){
+
+function disponibles() {
 
     let CUNO = $("#c-uno")[0];
     for (i = 0; i < CUNO.children.length; i++) {
         let x = CUNO.children[i];
         let y = CUNO.children[i].id;
         let yy = document.getElementById(y);
-        
+
         //funcionaba antes de mover la energia en un div arriba
         // let costo = x.children[1].children[1].innerText;
 
         let costo = x.children[0].children[0].innerText;
-        (dos.energia >= costo) ?  null : $(yy).addClass('oscurecer');
+        (dos.energia >= costo) ? null: $(yy).addClass('oscurecer');
     }
 }
- function desbloquearDisponibles(){
+
+function desbloquearDisponibles() {
 
     let CUNO = $("#c-uno")[0];
     for (i = 0; i < CUNO.children.length; i++) {
         let x = CUNO.children[i].id;
         let y = document.getElementById(x);
         // console.log(x);
-        if(x == 'jab' || x == 'jump'){
+        if (x == 'jab' || x == 'jump') {
             $(y).attr('onClick', 'selectM(this);').removeClass('oscurecer');
         }
     }
 
- }
+}
 //355 LINEAS minimo
 // 461 lineas maximo

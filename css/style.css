@@ -108,6 +108,9 @@
     .datos {
         display: flex;
         justify-content: space-around;
+        background: #3b96d8;
+        color: white;
+        /* font-family: 'Lilita One'; */
     }
 
     .barra-vida {
@@ -129,7 +132,7 @@
     }
 
     .contenedor-mensajes {
-        width: 90%;
+        width: 92%;
         margin: 0 auto;
         margin-top: 15px;
         text-align: center;
@@ -174,11 +177,11 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
+        /* justify-content: center; */
     }
 
     .pieza {
-        width: 29%;
+        width: 21%;
         /* max-height: 50px; */
         display: flex;
         flex-direction: column;
@@ -193,13 +196,15 @@
 
     .bg-gray {
         background-color: #aab8c2;
+        border-radius: .165rem;
     }
 
     .oscurecer {
         background-color: rgba(0, 0, 0, 0.8);
         filter: brightness(0.5);
     }
-    .cost{
+
+    .cost {
         /* font-family: 'Lilita One'; */
         color: #fff;
         background: #60738c;
@@ -207,27 +212,52 @@
         align-items: center;
         justify-content: center;
     }
-    .cost > div{
+    
+    /*margen a los iconos*/
+i{
+    margin-right: 5px;
+}
+    .cost>div {
         margin-right: 5px;
+        padding: 2px;
     }
-    .contenedor-e{
+    .cost-tipo{
+        width: 50%;
+    }
+    .tipo-a{
+        background: #29af61;
+    }
+    .tipo-d{
+        background: #fb5d06;
+    }
+    .tipo-e{
+        background: #cb7ada;
+    }
+    .cost-icon{
+        width: 40%;
+    text-align: end;
+    }
+
+    .contenedor-e {
         /* 
         background:#60738c;
         display: flex;
         align-items: center;
         justify-content: center; */
         color: #fff;
-        background:#60738c;
+        background: #60738c;
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
-    .contenedor-e > div {
+
+    .contenedor-e>div {
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    .e-rage{
+
+    .e-rage {
         margin-top: 5px;
     }
 }

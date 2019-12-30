@@ -42,8 +42,11 @@
     width: 95%;
     margin: 0 auto;
 }
-.card-datos > div{
-    width: 50%;
+.card-datos > div:nth-child(1){
+    width: 24%;
+}
+.card-datos > div:nth-child(2){
+    width: 77%;
 }
 
 .card-content {
