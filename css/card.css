@@ -39,6 +39,8 @@
 .card-datos {
     display: flex; 
     justify-content: center;
+    width: 95%;
+    margin: 0 auto;
 }
 .card-datos > div{
     width: 50%;

@@ -178,7 +178,7 @@
     }
 
     .pieza {
-        width: 30%;
+        width: 29%;
         /* max-height: 50px; */
         display: flex;
         flex-direction: column;
@@ -198,5 +198,36 @@
     .oscurecer {
         background-color: rgba(0, 0, 0, 0.8);
         filter: brightness(0.5);
+    }
+    .cost{
+        /* font-family: 'Lilita One'; */
+        color: #fff;
+        background: #60738c;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .cost > div{
+        margin-right: 5px;
+    }
+    .contenedor-e{
+        /* 
+        background:#60738c;
+        display: flex;
+        align-items: center;
+        justify-content: center; */
+        color: #fff;
+        background:#60738c;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .contenedor-e > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .e-rage{
+        margin-top: 5px;
     }
 }

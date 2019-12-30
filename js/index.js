@@ -15,7 +15,9 @@ var uno = {
     rage: 1,
     upB: 4,
     sideB: 3,
-    jab: 0
+    jab: 0,
+    jump: 0,
+    counter: 10
 }
 
 var dos = {
@@ -28,7 +30,9 @@ var dos = {
     rage: 1,
     upB: 4,
     sideB: 3,
-    jab: 0
+    jab: 0,
+    jump: 0,
+    counter: 10
 }
 
 $(document).ready(function () {
@@ -52,7 +56,7 @@ $(document).ready(function () {
 
     $("#porcentaje1").html(uno.porcentaje + ' %');
     $("#porcentaje2").html(dos.porcentaje + ' %');
-    $("#energia2").html("E: " + dos.energia);
+    $("#energia2").html(dos.energia);
     $("#btn-ready").addClass("btn-ready-disabled");
 });
 
@@ -97,9 +101,10 @@ function rageRandom() {
 
 function selectM(e) {
 
-    let x = e.children[1].children[1].innerText;
-  
-    // console.log(dos.energia);
+    //funcionaba antes de mover la energia para arriba en otro div
+    // let x = e.children[1].children[1].innerText;
+    let x = e.children[0].children[0].innerText;
+
     if(x <= dos.energia){
         
     }
@@ -111,8 +116,7 @@ function selectM(e) {
     $(nDiv).attr('onClick', 'dselectM(this);');
     $("#m-dos").append(e);
     x = parseInt(x, 10);
-    medirEnergia("restar",x);
-   
+    medirEnergia("restar",x);   
 }
 
 function dselectM(e) {
@@ -120,7 +124,8 @@ function dselectM(e) {
     let nDiv = document.getElementById(e.id);
     $(nDiv).attr('onClick', 'selectM(this);');
     $("#c-uno").append(e);
-    let x = e.children[1].children[1].innerText;
+    // let x = e.children[1].children[1].innerText;
+    let x = e.children[0].children[0].innerText;
     x = parseInt(x, 10);
     medirEnergia("sumar",x);
 }
@@ -139,13 +144,15 @@ $('#m-dos').bind('DOMNodeRemoved', function() {
 
 function handler() {
     // Lo que se ejecuta cuando cambia un nodo div o span dentro de #chat
-    if (allmove.childNodes.length >= 3) {
+    if (allmove.childNodes.length == 3) {
 
         bloquearCRestantes("si");
 
         $("#btn-ready").attr("disabled", false);
         $("#btn-ready").removeClass("btn-ready-disabled");
 
+    } else if(allmove.childNodes.length > 3){
+        console.log("mayor a 3");
     } else {
 
         $("#btn-ready").attr("disabled", true);
@@ -176,7 +183,7 @@ $("#btn-ready").click(function () {
             i = i - 3;
         }
         dos.energia+= 2;
-        $("#energia2").html("E: " + dos.energia);
+        $("#energia2").html(dos.energia);
     }, 3000);
     stageOut();
     
@@ -197,8 +204,8 @@ function compararSmash() {
     evaluarPorcentaje();
     stageOut();
 
-    // dos.energia+= 10;
-    // $("#energia2").html("E: " + dos.energia);
+    dos.energia+= 10;
+    $("#energia2").html(dos.energia);
 }
 
 function compararValorUno() {
@@ -206,11 +213,17 @@ function compararValorUno() {
     let mov = $("#movimientos")[0];
     
     let iValorUnoCPU = mov.childNodes[1].childNodes[1].childNodes[3].innerText;
-    let iValorUnoJ = mov.childNodes[3].childNodes[0].childNodes[3].innerText;
+    let iValorUnoJ = mov.childNodes[3].childNodes[0].childNodes[1].innerText;
+    let sValorUnoJ = mov.childNodes[3].childNodes[0].childNodes[5].childNodes[1].id;
+   
     // console.log(mov.childNodes[3].childNodes[0].childNodes[3].innerText);
 
     iValorUnoJ = parseInt(iValorUnoJ, 10);
     iValorUnoCPU = parseInt(iValorUnoCPU, 10);
+
+    if(sValorUnoJ == 'counter-value'){
+        iValorUnoJ = iValorUnoCPU * 3;
+    }
 
     if (iValorUnoJ > iValorUnoCPU) {
 
@@ -225,14 +238,14 @@ function compararValorUno() {
 
         $("#porcentaje1").html(uno.porcentaje + ' %');
         $("#porcentaje2").html(dos.porcentaje + ' %');
-        $("#energia2").html("E: " + dos.energia);
+        $("#energia2").html(dos.energia);
 
 
     } else {
         dos.porcentaje += iValorUnoCPU - iValorUnoJ;;
         $("#porcentaje2").html(dos.porcentaje + ' %');
         dos.energia += 1;
-        $("#energia2").html("E: " + dos.energia);
+        $("#energia2").html(dos.energia);
     }
 }
 
@@ -241,10 +254,15 @@ function compararValorDos() {
     let mov = $("#movimientos");
 
     let iValorUnoCPU = mov[0].childNodes[1].childNodes[3].childNodes[3].innerText;
-    let iValorUnoJ = mov[0].childNodes[3].childNodes[1].childNodes[3].innerText;
+    let iValorUnoJ = mov[0].childNodes[3].childNodes[1].childNodes[1].innerText;
+    let sValorUnoJ = mov[0].childNodes[3].childNodes[1].childNodes[5].childNodes[1].id;
 
     iValorUnoJ = parseInt(iValorUnoJ, 10);
     iValorUnoCPU = parseInt(iValorUnoCPU, 10);
+
+    if(sValorUnoJ == 'counter-value'){
+        iValorUnoJ = iValorUnoCPU * 3;
+    }
 
     if (iValorUnoJ > iValorUnoCPU) {
 
@@ -259,14 +277,14 @@ function compararValorDos() {
 
         $("#porcentaje1").html(uno.porcentaje + ' %');
         $("#porcentaje2").html(dos.porcentaje + ' %');
-        $("#energia2").html("E: " + dos.energia);
+        $("#energia2").html(dos.energia);
 
     } else {
 
         dos.porcentaje += iValorUnoCPU - iValorUnoJ;;
         $("#porcentaje2").html(dos.porcentaje + ' %');
         dos.energia += 1;
-        $("#energia2").html("E: " + dos.energia);
+        $("#energia2").html(dos.energia);
     }
 }
 
@@ -275,10 +293,15 @@ function compararValorTres() {
     let mov = $("#movimientos");
 
     let iValorUnoCPU = mov[0].childNodes[1].childNodes[5].childNodes[3].innerText;
-    let iValorUnoJ = mov[0].childNodes[3].childNodes[2].childNodes[3].innerText;
+    let iValorUnoJ = mov[0].childNodes[3].childNodes[2].childNodes[1].innerText;
+    let sValorUnoJ = mov[0].childNodes[3].childNodes[2].childNodes[5].childNodes[1].id;
 
     iValorUnoJ = parseInt(iValorUnoJ, 10);
     iValorUnoCPU = parseInt(iValorUnoCPU, 10);
+
+    if(sValorUnoJ == 'counter-value'){
+        iValorUnoJ = iValorUnoCPU * 3;
+    }
 
     if (iValorUnoJ > iValorUnoCPU) {
 
@@ -293,14 +316,14 @@ function compararValorTres() {
 
         $("#porcentaje1").html(uno.porcentaje + ' %');
         $("#porcentaje2").html(dos.porcentaje + ' %');
-        $("#energia2").html("E: " + dos.energia);
+        $("#energia2").html(dos.energia);
 
     } else {
 
         dos.porcentaje += iValorUnoCPU - iValorUnoJ;;
         $("#porcentaje2").html(dos.porcentaje + ' %');
         dos.energia += 1;
-        $("#energia2").html("E: " + dos.energia);
+        $("#energia2").html(dos.energia);
     }
 }
 
@@ -522,10 +545,12 @@ function showDosValues() {
     $("#nb-value").html(dos.nB);
     $("#tilt-value").html(dos.tilt);
     $("#rage2").html("Rage: " + dos.rage);
-    // $("#energia2").html("E: " + dos.energia);
+
     $("#upb-value").html(dos.upB);
     $("#sideB-value").html(dos.sideB);
     $("#jab-value").html(dos.jab);
+    $("#jump-value").html(dos.jump);
+    $("#counter-value").html(dos.counter);
 }
 
 function medirEnergia(accion,costo){
@@ -533,12 +558,15 @@ function medirEnergia(accion,costo){
     switch(accion){
         case "restar":
             dos.energia -= costo;
-            // console.log(dos.energia);
-            $("#energia2").html("E: " + dos.energia);
+            $("#energia2").html(dos.energia);
             disponibles();
             if(dos.energia == 0){
                 bloquearCRestantes("si");
-                console.log("detecto energia igual a cero");
+                //desbloquear los que si se pueden
+                let MDOS = $("#m-dos")[0];
+                if( MDOS.children.length <= 2){
+                    desbloquearDisponibles();
+                }
 
             }else if(dos.energia == 0){
                 bloquearCRestantes("no");
@@ -546,7 +574,7 @@ function medirEnergia(accion,costo){
         break;
         case "sumar":
             dos.energia += costo;
-            $("#energia2").html("E: " + dos.energia);
+            $("#energia2").html(dos.energia);
             disponibles();
             // if(dos.energia == 0){
             //     bloquearCRestantes("si");
@@ -556,7 +584,6 @@ function medirEnergia(accion,costo){
             // }
         break;
     }
-    console.log("e actual: ", dos.energia);
 }
 function disponibles(){
 
@@ -566,10 +593,25 @@ function disponibles(){
         let y = CUNO.children[i].id;
         let yy = document.getElementById(y);
         
-        let costo = x.children[1].children[1].innerText;
+        //funcionaba antes de mover la energia en un div arriba
+        // let costo = x.children[1].children[1].innerText;
+
+        let costo = x.children[0].children[0].innerText;
         (dos.energia >= costo) ?  null : $(yy).addClass('oscurecer');
     }
 }
+ function desbloquearDisponibles(){
 
+    let CUNO = $("#c-uno")[0];
+    for (i = 0; i < CUNO.children.length; i++) {
+        let x = CUNO.children[i].id;
+        let y = document.getElementById(x);
+        // console.log(x);
+        if(x == 'jab' || x == 'jump'){
+            $(y).attr('onClick', 'selectM(this);').removeClass('oscurecer');
+        }
+    }
+
+ }
 //355 LINEAS minimo
 // 461 lineas maximo
