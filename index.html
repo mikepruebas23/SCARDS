@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="fontawesome/css/solid.css">
+    <meta name="theme-color" content="#2F3BA2" />
+    <title>CSMSH</title>
+</head>
+
+<body>
+    <div id="resultado">Ganador: </div>
+
+    <div class="card">
+        <div class="card-body bg-gray">
+            <div class="card-datos">
+                <div id="rage1">Rage: </div>
+                <div id="porcentaje1" class="porcentaje"></div>
+            </div>
+        </div>
+    </div>
+    <div class="contenedor-mensajes">
+        <div id="movimientos" class="movimientos">
+            <div id="m-uno" class="mfdr">
+                <div id="shield1" class="item pieza">
+                    <div>shield</div>
+                    <div id="shield-value1"></div>
+                </div>
+                <div id="smash1" class="item pieza">
+                    <div>smash</div>
+                    <div id="smash-value1"></div>
+                </div>
+                <div id="nb1" class="item pieza" onclick="selectM(this)">
+                    <div>Nutral B</div>
+                    <div id="nb1-value"></div>
+                </div>
+                <!-- <div id="tilt1" class="item pieza" onclick="selectM(this)">
+                    <div>Tilt</div>
+                    <div id="tilt1-value"></div>
+                </div> -->
+            </div>
+            <div id="m-dos" class="mfdr"></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body bg-gray">
+            <div class="card-datos">
+                <div class="contenedor-e">
+                    <div class="e-energia">
+                        <i class="fas fa-bolt"></i>
+                        <div id="energia2" style="margin-left: 5px;"></div>
+                    </div>
+                    <div class="e-rage">
+                        <div id="rage2">Rage: </div>
+                    </div>
+                </div>
+
+                <div id="porcentaje2" class="porcentaje"></div>
+            </div>
+            <div id="c-uno" class="c-uno">
+                <div id="shield" class="item pieza" onclick="selectM(this)">
+                    <div class="cost">
+                       <div class="cost-tipo tipo-d"> <i class="fas fa-shield-alt"></i></div>
+                        <div id="shield-cost" class="cost-icon">5</div><i class="fas fa-bolt"></i>
+                    </div>
+                    <img src="images/shield.jpg" alt="shield" id="img-shield" style="height: 70px;">
+                    <div class="datos">
+                        <div id="shield-value">shield</div>
+                    </div>
+                </div>
+                <div id="smash" class="item pieza" onclick="selectM(this)">
+                    <div class="cost">
+                        <div class="cost-tipo tipo-a"> <i class="fas fa-fist-raised"></i></div>
+                        <div id="smash-cost" class="cost-icon">5</div><i class="fas fa-bolt"></i>
+                    </div>
+                    <img src="images/smahs.jpg" alt="smash" id="img-smash" style="height: 70px;">
+                    <div class="datos">
+                        <div id="smash-value">smash</div>
+                    </div>
+                </div>
+                <div id="nb" class="item pieza" onclick="selectM(this)">
+                    <div class="cost">
+                         <div class="cost-tipo tipo-a"> <i class="fas fa-fist-raised"></i></div>
+                        <div id="nb-cost" class="cost-icon">2</div><i class="fas fa-bolt"></i>
+                    </div>
+                    <img src="images/nb.jpg" alt="nb" id="img-nb" style="height: 70px;">
+                    <div class="datos">
+                        <div id="nb-value">nb</div>
+                    </div>
+                </div>
+                <div id="tilt" class="item pieza" onclick="selectM(this)">
+                    <div class="cost">
+                        <div class="cost-tipo tipo-a"> <i class="fas fa-fist-raised"></i></div>
+                        <div id="tilt-cost" class="cost-icon">3</div><i class="fas fa-bolt"></i>
+                    </div>
+                    <img src="images/tilt.jpg" alt="tilt" id="img-tilt" style="height: 70px;">
+                    <div class="datos">
+                        <div id="tilt-value">tilt</div>
+                    </div>
+                </div>
+                <div id="upB" class="item pieza" onclick="selectM(this)">
+                    <div class="cost">
+                         <div class="cost-tipo tipo-a"> <i class="fas fa-fist-raised"></i></div>
+                        <div id="upb-cost" class="cost-icon">7</div><i class="fas fa-bolt"></i>
+                    </div>
+                    <img src="images/upb.jpg" alt="upb" id="img-upb" style="height: 70px;">
+                    <div class="datos">
+                        <div id="upb-value">upb</div>
+                    </div>
+                </div>
+                <div id="sideB" class="item pieza" onclick="selectM(this)">
+                    <div class="cost">
+                         <div class="cost-tipo tipo-a"> <i class="fas fa-fist-raised"></i></div>
+                        <div id="sideB-cost" class="cost-icon">4</div><i class="fas fa-bolt"></i>
+                    </div>
+                    <img src="images/sideb.jpg" alt="sideB" id="img-sideB" style="height: 70px;">
+                    <div class="datos">
+                        <div id="sideB-value">sideB</div>
+                    </div>
+                </div>
+                <div id="jab" class="item pieza" onclick="selectM(this)">
+                    <div class="cost">
+                         <div class="cost-tipo tipo-a"> <i class="fas fa-fist-raised"></i></div>
+                        <div id="jab-cost" class="cost-icon">0</div><i class="fas fa-bolt"></i>
+                    </div>
+                    <img src="images/jab.jpg" alt="jab" id="img-jab" style="height: 70px;">
+                    <div class="datos">
+                        <div id="jab-value">jab</div>
+                    </div>
+                </div>
+                <div id="jump" class="item pieza" onclick="selectM(this)">
+                    <div class="cost">
+                         <div class="cost-tipo tipo-e"> <i class="fas fa-exchange-alt"></i></div>
+                        <div id="jump-cost" class="cost-icon">0</div><i class="fas fa-bolt"></i>
+                    </div>
+                    <img src="images/jump.jpg" alt="jump" id="img-jump" style="height: 70px;">
+                    <div class="datos">
+                        <div id="jump-value">jump</div>
+                    </div>
+                </div>
+                <div id="counter" class="item pieza" onclick="selectM(this)">
+                    <div class="cost">
+                         <div class="cost-tipo tipo-d"> <i class="fas fa-shield-alt"></i></div>
+                        <div id="counter-cost" class="cost-icon">10</div>
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <img src="images/counter.png" alt="counter" id="img-counter" style="height: 70px;">
+                    <div class="datos">
+                        <div id="counter-value">counter</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btn-footer">
+        <button id="btn-ready" class="btn-ready btn3" onclick="compararSmash()" disabled>Listo</button>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/index.js"></script>
+
+</html>
