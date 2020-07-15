@@ -1,4 +1,5 @@
 var iRage;
+var iSelectCpu;
 var dJugador;
 var ronda;
 var iSR;
@@ -36,7 +37,7 @@ var dos = {
 }
 
 $(document).ready(function () {
-
+   
     var dJugador = $("#c-uno")[0];
     uno.shield += sRandom();
     uno.smash += nBRandom();
@@ -56,6 +57,7 @@ $(document).ready(function () {
 
     $("#porcentaje1").html(uno.porcentaje + ' %');
     $("#porcentaje2").html(dos.porcentaje + ' %');
+    $("#energia1").html(uno.energia);
     $("#energia2").html(dos.energia);
     $("#btn-ready").addClass("btn-ready-disabled");
 });
@@ -105,6 +107,7 @@ function selectM(e) {
     // let x = e.children[1].children[1].innerText;
     let x = e.children[0].children[1].innerText;
     // console.log(x);
+    // console.log("dos.energia: ",dos.energia);
 
     if (x <= dos.energia) {
 
@@ -115,8 +118,14 @@ function selectM(e) {
     let nDiv = document.getElementById(e.id);
     $(nDiv).attr('onClick', 'dselectM(this);');
     $("#m-dos").append(e);
-    x = parseInt(x, 10);
+    x = parseInt(x,10);
+    // console.log("costo x: ",x);
     medirEnergia("restar", x);
+
+
+    //selecccion cpu
+    let  xc = randomCPUSelect();
+    colocarCpu(xc);
 }
 
 function dselectM(e) {
@@ -125,7 +134,7 @@ function dselectM(e) {
     $(nDiv).attr('onClick', 'selectM(this);');
     $("#c-uno").append(e);
     // let x = e.children[1].children[1].innerText;
-    let x = e.children[0].children[0].innerText;
+    let x = e.children[0].children[1].innerText;
     x = parseInt(x, 10);
     medirEnergia("sumar", x);
 }
@@ -212,7 +221,7 @@ function compararSmash() {
 
 function compararValorUno() {
 
-    let mov = $("#movimientos")[0];
+    let mov = $("#movimientos");
 
     let iValorUnoCPU = mov.childNodes[1].childNodes[1].childNodes[3].innerText;
     let iValorUnoJ = mov.childNodes[3].childNodes[0].childNodes[1].innerText;
@@ -225,6 +234,9 @@ function compararValorUno() {
 
     if (sValorUnoJ == 'counter-value') {
         iValorUnoJ = iValorUnoCPU * 3;
+    }
+    if (sValorUnoJ == 'jump-value') {
+        iValorUnoCPU = 0;
     }
 
     if (iValorUnoJ > iValorUnoCPU) {
@@ -510,6 +522,7 @@ function bloquearCRestantes(bloquear) {
     let CUNO = $("#c-uno")[0];
     for (i = 0; i < CUNO.children.length; i++) {
         let x = CUNO.children[i].id;
+        // console.log(x);
         let y = document.getElementById(x);
 
         for (j = 0; j < CUNO.children[i].children.length; j++) {
@@ -578,13 +591,31 @@ function medirEnergia(accion, costo) {
             dos.energia += costo;
             $("#energia2").html(dos.energia);
             disponibles();
-            // if(dos.energia == 0){
-            //     bloquearCRestantes("si");
-
-            // }else if(dos.energia == 0){
-            //     bloquearCRestantes("no");
-            // }
             break;
+    }
+}
+
+function medirEnergiaCPU(accion, costo) {
+
+    switch (accion) {
+        case "restar":
+            uno.energia -= costo;
+            $("#energia1").html(uno.energia);
+            // disponibles();
+            if (uno.energia == 0) {
+                // bloquearCRestantes("si");
+                console.log("uno energia = 0");
+                return;
+                //desbloquear los que si se pueden
+                // let MDOS = $("#m-dos")[0];
+            
+            } 
+            break;
+        // case "sumar":
+        //     uno.energia += costo;
+        //     $("#energia1").html(uno.energia);
+        //     // disponibles();
+        //     break;
     }
 }
 
@@ -595,11 +626,11 @@ function disponibles() {
         let x = CUNO.children[i];
         let y = CUNO.children[i].id;
         let yy = document.getElementById(y);
-
+        
         //funcionaba antes de mover la energia en un div arriba
         // let costo = x.children[1].children[1].innerText;
-
-        let costo = x.children[0].children[0].innerText;
+        
+        let costo = x.children[0].children[1].innerText;
         (dos.energia >= costo) ? null: $(yy).addClass('oscurecer');
     }
 }
@@ -616,6 +647,84 @@ function desbloquearDisponibles() {
         }
     }
 
+}
+
+
+function randomCPUSelect() {
+    iSelectCpu = Math.floor(Math.random() * (2 + 1));
+    return iSelectCpu;
+}
+var cupAllCards = [
+    id = ["shield1","smash1","nb1"],
+    nombre = ["shield","smash","neutral B"],
+    value = ["shield-value1","smash-value1","nb1-value"],
+    costo = [4,2,4]
+]
+
+function colocarCpu(valor){
+
+    let newDCard = document.createElement("div");
+    let newDNombre = document.createElement("div");
+    let newDValue = document.createElement("div");
+    let id,nombre,value;
+
+    // console.log('valor: ',valor);
+
+    switch (valor) {
+        case valor:
+            console.log("costo:",cupAllCards[3][valor]);
+            // medirEnergiaCPU("restar", cupAllCards[3][valor]);
+            if (cupAllCards[3][valor] <= uno.energia) {
+                let aidi = cupAllCards[0][valor];
+                console.log('aidi',aidi);
+                if(compararCardCpu(aidi)){
+                    let  xc = randomCPUSelect();
+                    colocarCpu(xc);
+                    
+                    return;
+                }
+                medirEnergiaCPU("restar", cupAllCards[3][valor]);
+                id = cupAllCards[0][valor];
+                nombre = cupAllCards[1][valor];
+                value = cupAllCards[2][valor];
+
+            } else {
+                console.log("no tienes suficiente enegia: " ,uno.energia)
+                let  xc = randomCPUSelect();
+                colocarCpu(xc);
+                //recordar qie se cicla al quitar carta y poner de neuvo cae en energia = 0;
+                return;
+            }
+        break;
+    }
+
+    newDCard.setAttribute("id", id);
+    newDValue.setAttribute("id", value);
+  
+    newDCard.classList.add("item");
+    newDCard.classList.add("pieza");
+
+    let newContent = document.createTextNode(nombre); 
+    newDNombre.appendChild(newContent);
+
+    let currentDiv = document.getElementById("m-uno"); 
+    currentDiv.appendChild(newDCard);
+    newDCard.appendChild(newDNombre);
+    newDCard.appendChild(newDValue);
+}
+
+function compararCardCpu(idRndmCpu){
+let x = $("#m-uno")[0];
+// console.log( x.children.length );
+console.log("id del cpu: ", idRndmCpu);
+for( i = 0; i < x.children.length; i++){
+    console.log("id: ",x.children[i].id);
+    if(idRndmCpu == x.children[i].id){
+        console.log("id repetido", idRndmCpu);
+        return true;
+    }
+// console.log("tamaño: ",x.children[i]);
+}
 }
 //355 LINEAS minimo
 // 461 lineas maximo
