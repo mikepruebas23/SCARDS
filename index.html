@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="fontawesome/css/solid.css">
     <meta name="theme-color" content="#2F3BA2" />
     <title>CSMSH</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -18,31 +20,22 @@
     <div class="card">
         <div class="card-body bg-gray">
             <div class="card-datos">
-                <div id="rage1">Rage: </div>
+                <div class="contenedor-e">
+                    <div class="e-energia">
+                        <i class="fas fa-bolt"></i>
+                        <div id="energia1" style="margin-left: 5px;"></div>
+                    </div>
+                    <div class="e-rage">
+                        <div id="rage1">Rage: </div>
+                    </div>
+                </div>
                 <div id="porcentaje1" class="porcentaje"></div>
             </div>
         </div>
     </div>
     <div class="contenedor-mensajes">
         <div id="movimientos" class="movimientos">
-            <div id="m-uno" class="mfdr">
-                <div id="shield1" class="item pieza">
-                    <div>shield</div>
-                    <div id="shield-value1"></div>
-                </div>
-                <div id="smash1" class="item pieza">
-                    <div>smash</div>
-                    <div id="smash-value1"></div>
-                </div>
-                <div id="nb1" class="item pieza" onclick="selectM(this)">
-                    <div>Nutral B</div>
-                    <div id="nb1-value"></div>
-                </div>
-                <!-- <div id="tilt1" class="item pieza" onclick="selectM(this)">
-                    <div>Tilt</div>
-                    <div id="tilt1-value"></div>
-                </div> -->
-            </div>
+            <div id="m-uno" class="mfdr"></div>
             <div id="m-dos" class="mfdr"></div>
         </div>
     </div>
@@ -163,6 +156,6 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/index.js"></script>
+<script src="js/index2.js"></script>
 
 </html>
